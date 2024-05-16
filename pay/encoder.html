@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <body style="overflow-wrap: break-word;">
+    <form id="form" target="_blank">
+      <input type="text" placeholder="Enter JSON" id="input">
+      <button type="submit">Encode</button>
+    </form>
+  </body>
+  <script src="main.js"></script>
+    <script>
+      const form = document.getElementById('form')
+      const input = document.getElementById('input')
+      form.addEventListener('submit', (event) => {
+        const lnk = `https://k1gol.github.io/pay#${encodeJson(input.value)}`
+        document.body.innerHTML += `<a href="${lnk}"">${lnk}</a>`
+        event.preventDefault()
+      })
+    </script>
+</html>
