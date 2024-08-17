@@ -1,7 +1,57 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <script src="wavy.js"></script>
+  </head>
   <body>
-    <a href="https://k1gol.github.io/nbody">Nbody</a><br>
-    <a href="https://k1gol.github.io/pay">Pay</a>
+    <div class="wipe nodisp" id="wipe-1"></div>
+    <div class="wipe nodisp" id="wipe-2"></div>
+    <canvas id="wavy" style="width: 100vw; height: 100vh; position: absolute; background-color: black;"></canvas>
+    <div class="container">
+      <h1>k1gol.github.io</h1>
+      <span class="button" onclick="openWindow('https://github.com/k1gol')">Github</span>
+      <span class="button" onclick="openWindow('https://github.com/K1GOL/k1gol.github.io')">This repo</span>
+      <h2>cool stuff</h2>
+      <span class="button" onclick="openWindow('https://github.com/K1GOL/autolink')">autolink</span>
+      <span class="button" onclick="openWindow('https://k1gol.itch.io/noppa')">Noppa</span>
+      <span class="button" onclick="openWindow('https://github.com/K1GOL/connect-four')">Connect Four</span>
+      <h2>live demos</h2>
+      <span class="button" onclick="openWindow('https://k1gol.github.io/nbody')">nbody</span>
+      <span class="button" onclick="openWindow('https://github.com/K1GOL/k1gol.github.io#pay')">Pay calculator</span>
+    </div>
   </body>
+  <script>
+    const waves = wavy(document.getElementById('wavy'))
+
+    const w1 = document.getElementById('wipe-1')
+    const w2 = document.getElementById('wipe-2')
+    
+    function clearWipe () {
+      w1.classList.remove('wiping')
+      w2.classList.remove('wiping')
+      w1.classList.add('nodisp')
+      w2.classList.add('nodisp')
+    }  
+
+    clearWipe()
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) {
+        // page was restored from back-forward cache
+        clearWipe()
+      }
+    })
+
+    waves.createWave((x) => Math.sin(x) * 1.1, (y) => Math.pow(Math.sin(y * 0.4) * 2, 3), (dx) => dx * 0.5, (dy) => Math.pow(dy * 0.02, 1.5))
+
+    function openWindow (url) {
+      w1.classList.remove('nodisp')
+      w2.classList.remove('nodisp')
+      w1.classList.add('wiping')
+      w2.classList.add('wiping')
+      setTimeout(() => {
+        window.location = url
+      }, 1000)
+    }
+  </script>
 </html>

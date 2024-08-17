@@ -15,39 +15,39 @@ In addition, you can use the following strings to automatically substitute their
 
 # /pay
 
-Watch the money roll in. Generate pay data at `/pay/encode` and pass that as the URL fragment, like so:
+Watch the money roll in. Generate pay data at [`/pay/encode`](https://k1gol.github.io/pay/encode) and pass that as the URL fragment, like so:
 
 ```json
 {
   "segments": [
     {
       "start": {
-        "h": 18,
+        "h": 10,
         "m": 0
       },
       "end": {
-        "h": 19,
+        "h": 11,
         "m": 0
       },
-      "pay": 15.50,
+      "pay": 13.37,
       "mult": 1
     },
     {
       "start": {
-        "h": 19,
+        "h": 11,
         "m": 0
       },
       "end": {
-        "h": 21,
-        "m": 0
+        "h": 12,
+        "m": 30
       },
-      "pay": 15.50,
-      "mult": 1.15
+      "pay": 13.37,
+      "mult": 1.5
     },
     {
       "start": {
         ...
 ```
 
-This turns into:
-`/pay#eyAgICJzZWdtZW50cyI6IFsgICAgIHsgICAgICAgInN0YXJ0IjogeyAgICA...`
+This turns into a base64-encoded URL fragment:
+`/pay#eyAgICJ...`

@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
+
+body {
+  font-family: "Ubuntu Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+  margin: 0;
+}
+/* position: absolute; display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; color: white; */
+.container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: calc(100% - 3rem);
+  overflow-x: hidden;
+  color: white;
+  margin: 3rem;
+  text-shadow: black 1px 0 10px;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2rem;
+  
+}
+
+h1, h2 {
+  margin: 1rem;
+}
+
+.button {
+  cursor: pointer;
+  font-size: 2rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: fit-content;
+  padding: 0.5rem;
+  position: relative;
+  z-index: 1;
+  left: 20px;
+  transition: all 0.3s ease-out;
+  margin-left: 1rem;
+}
+
+.button::before {
+  content: '>';
+  position: absolute;
+  background-color: rgb(18, 75, 18);
+  width: 20px;
+  left: -20px;
+  transition: all 0.3s ease-out;
+  z-index: -1;
+}
+
+.button:hover {
+  color: black;
+  text-shadow: none;
+  transform: skewX(-5deg);
+}
+
+.button:hover::before {
+  width: 100%;
+  content: '$';
+  background-color: rgb(90, 223, 90);
+}
+
+.button::after {
+  content: '\00a0'; /* &nbsp; */
+  width: 100%;
+  height: 100%;
+  transition: none;
+}
+
+.button:hover::after {
+  content: '_';
+  animation: blink 1s infinite steps(1);
+}
+
+/* Blinking text animation */
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.wipe {
+  position: fixed;
+  height: 100vh;
+  z-index: 10;
+  transform: skewX(-10deg);
+  width: 150vw;
+  left: -200vw;
+  top: 0;
+}
+
+#wipe-1 {
+  background-color: rgb(90, 223, 90);
+  animation-timing-function: ease-out;
+}
+
+#wipe-2 {
+  background-color: black;
+  z-index: 11;
+  animation-timing-function: ease-in;
+}
+
+.nodisp {
+  display: none;
+}
+
+.wiping {
+  animation: wipe 0.7s forwards;
+  display: block;
+}
+
+/* Wipe animation */
+@keyframes wipe {
+  0% {
+    left: -200vw;
+  }
+  100% {
+    left: -25vw;
+  }
+}
