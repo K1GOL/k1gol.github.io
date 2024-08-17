@@ -4,8 +4,11 @@ const wavy = (canvas) => {
   canvas.height = canvas.clientHeight
   // Start by drawing a constant spaced grid of dots on the canvas.
   const dots = []
-  for (let x = 0; x < canvas.width; x += 10) {
-    for (let y = 0; y < canvas.height; y += 10) {
+  const ratio = canvas.width / canvas.height
+  const dW = canvas.width / 75 / ratio
+  const dH = canvas.height / 75
+  for (let x = 0; x < canvas.width; x += dW) {
+    for (let y = 0; y < canvas.height; y += dH) {
       dots.push({
         anchorX: x,
         anchorY: y,
