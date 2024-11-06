@@ -1,5 +1,13 @@
+# /ipfs-checker
+
+Tool for checking availability of content on different IPFS gateways.
+
+[https://k1gol.github.io/ipfs-checker](https://k1gol.github.io/ipfs-checker)
+
 # /nbody
 Simple n-body gravity simulation. Not particularly accurate, useful, or beautiful for that matter, just something fun to look at.
+
+[https://k1gol.github.io/nbody](https://k1gol.github.io/nbody)
 
 ## Usage
 
@@ -51,3 +59,5 @@ Watch the money roll in. Generate pay data at [`/pay/encode`](https://k1gol.gith
 
 This turns into a base64-encoded URL fragment:
 `/pay#eyAgICJ...`
+
+[https://k1gol.github.io/pay](https://k1gol.github.io/pay)
