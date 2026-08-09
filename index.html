@@ -1,58 +1,65 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="style.css">
-    <script src="wavy.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-  </head>
-  <body>
-    <div class="wipe nodisp" id="wipe-1"></div>
-    <div class="wipe nodisp" id="wipe-2"></div>
-    <canvas id="wavy" style="width: 100vw; height: 100vh; position: absolute; background-color: black;"></canvas>
-    <div class="container">
-      <h1>k1gol.github.io</h1>
-      <span class="button" onclick="openWindow('https://github.com/k1gol')">GitHub profile</span>
-      <span class="button" onclick="openWindow('https://github.com/K1GOL/k1gol.github.io')">This repo</span>
-      <h2>cool stuff</h2>
-      <span class="button" onclick="openWindow('https://github.com/K1GOL/netcheckdbg')">netcheckdbg</span>
-      <span class="button" onclick="openWindow('https://github.com/K1GOL/autolink')">autolink</span>
-      <span class="button" onclick="openWindow('https://k1gol.itch.io/noppa')">Noppa</span>
-      <h2>live demos</h2>
-      <span class="button" onclick="openWindow('https://k1gol.github.io/ipfs-checker')">ipfs-checker</span>
-      <span class="button" onclick="openWindow('https://k1gol.github.io/nbody')">nbody</span>
-    </div>
-  </body>
-  <script>
-    const waves = wavy(document.getElementById('wavy'))
 
-    const w1 = document.getElementById('wipe-1')
-    const w2 = document.getElementById('wipe-2')
-    
-    function clearWipe () {
-      w1.classList.remove('wiping')
-      w2.classList.remove('wiping')
-      w1.classList.add('nodisp')
-      w2.classList.add('nodisp')
-    }  
+<head>
+  <link rel="stylesheet" href="style.css">
+  <script src="wavy.js"></script>
+  <script src="typein.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+</head>
 
-    clearWipe()
-    window.addEventListener('pageshow', (event) => {
-      if (event.persisted) {
-        // page was restored from back-forward cache
-        clearWipe()
-      }
-    })
+<body>
+  <div class="wipe nodisp" id="wipe-1"></div>
+  <div class="wipe nodisp" id="wipe-2"></div>
+  <canvas id="wavy" style="width: 100vw; height: 100vh; position: absolute; background-color: black;"></canvas>
+  <div class="container">
+    <h1 class="js-type-in">k1gol.github.io</h1>
+    <span class="button js-type-in" onclick="openWindow('https://github.com/k1gol')">GitHub profile</span>
+    <span class="button js-type-in" onclick="openWindow('https://github.com/K1GOL/k1gol.github.io')">This repo</span>
 
-    waves.createWave((x) => Math.sin(x) * 1.1, (y) => Math.pow(Math.sin(y * 0.4) * 2, 3), (dx) => dx * 0.5, (dy) => Math.pow(dy * 0.02, 1.5))
+    <h2 class="js-type-in">cool stuff</h2>
+    <span class="button js-type-in" onclick="openWindow('https://github.com/K1GOL/netcheckdbg')">netcheckdbg</span>
+    <span class="button js-type-in" onclick="openWindow('https://github.com/K1GOL/cve_alert')">CVE Alert</span>
+    <span class="button js-type-in" onclick="openWindow('https://github.com/K1GOL/pyrdapcli')">RDAP query CLI</span>
 
-    function openWindow (url) {
-      w1.classList.remove('nodisp')
-      w2.classList.remove('nodisp')
-      w1.classList.add('wiping')
-      w2.classList.add('wiping')
-      setTimeout(() => {
-        window.location = url
-      }, 1000)
+    <h2 class="js-type-in">live demos</h2>
+    <span class="button js-type-in" onclick="openWindow('https://k1gol.github.io/ipfs-checker')">ipfs-checker</span>
+    <span class="button js-type-in" onclick="openWindow('https://k1gol.github.io/nbody')">nbody</span>
+  </div>
+</body>
+<script>
+  const waves = wavy(document.getElementById('wavy'), 25, 0.2, 100)
+
+  const w1 = document.getElementById('wipe-1')
+  const w2 = document.getElementById('wipe-2')
+
+  function clearWipe() {
+    w1.classList.remove('wiping')
+    w2.classList.remove('wiping')
+    w1.classList.add('nodisp')
+    w2.classList.add('nodisp')
+  }
+
+  clearWipe()
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+      // page was restored from back-forward cache
+      clearWipe()
     }
-  </script>
+  })
+
+  waves.createWave((x) => Math.sin(x) + Math.pow(Math.sin(x / 30), 30) * 50, (y) => Math.sin(y), (dx) => dx * 0.02, (dy) => dy * 0.02)
+  typeIn()
+
+  function openWindow(url) {
+    w1.classList.remove('nodisp')
+    w2.classList.remove('nodisp')
+    w1.classList.add('wiping')
+    w2.classList.add('wiping')
+    setTimeout(() => {
+      window.location = url
+    }, 1000)
+  }
+</script>
+
 </html>

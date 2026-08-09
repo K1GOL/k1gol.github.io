@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
-const wavy = (canvas) => {
+const wavy = (canvas, resolution = 30, timestep = 0.05, renderInterval = 50) => {
   canvas.width = canvas.clientWidth
   canvas.height = canvas.clientHeight
   // Start by drawing a constant spaced grid of dots on the canvas.
   const dots = []
   const ratio = canvas.width / canvas.height
-  const dW = canvas.width / 75 / ratio
-  const dH = canvas.height / 75
+  const dW = canvas.width / resolution / ratio
+  const dH = canvas.height / resolution
   for (let x = 0; x < canvas.width; x += dW) {
     for (let y = 0; y < canvas.height; y += dH) {
       dots.push({
@@ -59,10 +59,10 @@ const wavy = (canvas) => {
   }
 
   setInterval(() => {
-    time += 0.05
+    time += (timestep)
     drawFrame()
     animate(time)
-  }, 50)
+  }, renderInterval)
 
   return { createWave }
 }
